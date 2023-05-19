@@ -13,4 +13,5 @@ jobs:
     steps:
       - name: dumpit
         run: |
-          echo "HERE=${{ github.repository.isfork }}"
+          echo "HERE=${{ github.event.repository.isfork }}"
+          echo ${{ github.event.pull_request.head.repo.full_name }} ${{ github.repository }}
