@@ -13,4 +13,4 @@ jobs:
     steps:
       - name: dumpit
         run: |
-          echo "${{ toJson(github) }}"
+          echo '${{ toJson(github) }}'
