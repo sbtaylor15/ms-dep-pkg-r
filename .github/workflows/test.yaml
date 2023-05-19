@@ -12,4 +12,5 @@ jobs:
 
     steps:
       - name: dumpit
-        uses: crazy-max/ghaction-dump-context@v2.0.0
+        run: |
+          echo "HERE=${{ github.repository.isfork }}"
