@@ -16,3 +16,4 @@ jobs:
           echo "${{ github.event.repository.fork }}"
           echo "###"
           echo '${{ toJson(github) }}'
+          echo '${{ toJson(job) }}'
