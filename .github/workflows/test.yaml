@@ -13,6 +13,6 @@ jobs:
     steps:
       - name: dumpit
         run: |
-          echo '${{ toJson(github) }}'
-          echo ###
           echo "${{ github.repository.fork }}"
+          echo "###"
+          echo '${{ toJson(github) }}'
