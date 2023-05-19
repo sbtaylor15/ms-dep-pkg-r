@@ -13,9 +13,4 @@ jobs:
     steps:
       - name: dumpit
         run: |
-          echo "HERE=${{ github.repository.is_not_forked }}"
-          echo "HERE2=${{ github.event.pull_request.head.repo.full_name }}"
-          echo "HERE3=${{ github.repository }}"
-          env
-        env:
-          GHACTION_DCTX_GITHUB_CONTEXT: ${{ toJson(github) }}
+          echo "${{ toJson(github) }}"
