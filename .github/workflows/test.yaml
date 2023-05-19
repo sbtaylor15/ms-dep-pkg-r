@@ -13,5 +13,5 @@ jobs:
     steps:
       - name: dumpit
         run: |
-          echo "HERE=${{ github.event.repository.isfork }}"
+          echo "HERE=${{ github.repository.is_not_forked }}"
           echo ${{ github.event.pull_request.head.repo.full_name }} ${{ github.repository }}
