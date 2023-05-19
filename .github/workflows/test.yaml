@@ -3,7 +3,8 @@ name: Dump
 
 on:
   push:
-    - main
+    branches:
+      - main
 
 jobs:
   setenv:
