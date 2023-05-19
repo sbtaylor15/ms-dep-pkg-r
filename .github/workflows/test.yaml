@@ -1,0 +1,14 @@
+---
+name: Dump
+
+on:
+  push:
+    - main
+
+jobs:
+  setenv:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: dumpit
+        uses: crazy-max/ghaction-dump-context@v2.0.0
