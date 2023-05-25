@@ -47,4 +47,4 @@ jobs:
           echo '${{ toJson(needs) }}'
           echo '${{ toJson(steps) }}'
           echo '${{ toJson(runner) }}'
-          echo '${{ toJson(jobs) }}'
+          echo '${{ toJson(job) }}'
