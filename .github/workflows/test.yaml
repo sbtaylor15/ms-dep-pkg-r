@@ -30,7 +30,6 @@ jobs:
       - name: dumpit
         run: |
           echo "${{ github.event.repository.fork }}"
-          echo "###"
           echo '${{ toJson(github) }}'
           echo '${{ toJson(needs) }}'
           echo '${{ toJson(steps) }}'
