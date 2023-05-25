@@ -10,6 +10,19 @@ jobs:
   setenv:
     runs-on: ubuntu-latest
 
+    outputs:
+      short_sha: ${{ steps.env.outputs.short_sha }}
+      chart_version: ${{ steps.env.outputs.chart_version }}
+      image_version: ${{ steps.env.outputs.image_version }}
+      image_tag: ${{ steps.env.outputs.image_tag }}
+      image_repo_tag: ${{ steps.env.outputs.image_repo_tag }}
+      image_repository: ${{ steps.env.outputs.image_repository }}
+      registry: ${{ steps.env.outputs.registry }}
+      branch: ${{ steps.env.outputs.branch }}
+      compname: ${{ steps.env.outputs.compname }}
+      dhurl: ${{ steps.env.outputs.dhurl }}
+      gh_handle: ${{ steps.env.outputs.gh_handle }}
+
     steps:
       - name: Setup Env
         id: env
