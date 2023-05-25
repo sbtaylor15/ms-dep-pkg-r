@@ -1,0 +1,38 @@
+Results of cspell linter (version 6.31.1)
+See documentation on https://megalinter.io/6.22.2/descriptors/spell_cspell/
+-----------------------------------------------
+
+❌ [ERROR] for workspace /tmp/lint
+Linter raw log:
+1/2 ./tmp/lint/.github/workflows/test.yaml 1837.30ms X
+/tmp/lint/.github/workflows/test.yaml:9:3       - Unknown word (setenv)     -- setenv:
+	 Suggestions: [steen, Steen, setons, seton, selena]
+/tmp/lint/.github/workflows/test.yaml:13:15     - Unknown word (dumpit)     -- - name: dumpit
+	 Suggestions: [dumpier, dumpily, dumping, dumpish, dumpiest]
+2/2 ./tmp/lint/ad276822-f5e3-4e87-bce3-a3a60c36d861-megalinter_file_names_cspell.txt 13.18ms
+CSpell: Files checked: 2, Issues found: 2 in 1 files
+
+
+You can skip this misspellings by defining the following .cspell.json file at the root of your repository
+Of course, please correct real typos before :)
+
+{
+    "version": "0.2",
+    "language": "en",
+    "ignorePaths": [
+        "**/node_modules/**",
+        "**/vscode-extension/**",
+        "**/.git/**",
+        "**/.pnpm-lock.json",
+        ".vscode",
+        "package-lock.json",
+        "megalinter-reports"
+    ],
+    "words": [
+        "dumpit",
+        "setenv"
+    ]
+}
+
+
+You can also copy-paste megalinter-reports/.cspell.json at the root of your repository

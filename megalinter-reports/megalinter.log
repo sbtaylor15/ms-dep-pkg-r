@@ -1,0 +1,52 @@
+MARKDOWN_REMARK_LINT has been temporary disabled in MegaLinter, please use a previous MegaLinter version or wait for the next one !
+[31m❌ Linted [ACTION] files with [actionlint]: Found 1 error(s) - (0.05s)[0m
+--Error detail:
+tmp/lint/.github/workflows/test.yaml:6:5: "push" section is sequence node but mapping node is expected [syntax-check]
+  |
+6 |     - main
+  |     ^
+
+[31m❌ Linted [YAML] files with [v8r]: Found 1 error(s) - (3.83s)[0m
+--Error detail:
+ℹ No config file found
+ℹ Processing /tmp/lint/.github/workflows/test.yaml
+ℹ Found schema in https://www.schemastore.org/api/json/catalog.json ...
+ℹ Validating /tmp/lint/.github/workflows/test.yaml against schema from https://json.schemastore.org/github-workflow.json ...
+✖ /tmp/lint/.github/workflows/test.yaml is invalid
+
+/tmp/lint/.github/workflows/test.yaml#/on must be string
+/tmp/lint/.github/workflows/test.yaml#/on must be equal to one of the allowed values
+/tmp/lint/.github/workflows/test.yaml#/on must be array
+/tmp/lint/.github/workflows/test.yaml#/on/push must be object
+/tmp/lint/.github/workflows/test.yaml#/on/push must NOT be valid
+/tmp/lint/.github/workflows/test.yaml#/on/push must NOT be valid
+/tmp/lint/.github/workflows/test.yaml#/on/push must NOT be valid
+/tmp/lint/.github/workflows/test.yaml#/on/push must be null
+/tmp/lint/.github/workflows/test.yaml#/on/push must match exactly one schema in oneOf
+/tmp/lint/.github/workflows/test.yaml#/on must match exactly one schema in oneOf
+
+
+[31m❌ Linted [SPELL] files with [cspell]: Found 2 error(s) - (4.63s)[0m
+--Error detail:
+1/2 ./tmp/lint/.github/workflows/test.yaml 1837.30ms X
+/tmp/lint/.github/workflows/test.yaml:9:3       - Unknown word (setenv)     -- setenv:
+	 Suggestions: [steen, Steen, setons, seton, selena]
+/tmp/lint/.github/workflows/test.yaml:13:15     - Unknown word (dumpit)     -- - name: dumpit
+	 Suggestions: [dumpier, dumpily, dumping, dumpish, dumpiest]
+2/2 ./tmp/lint/ad276822-f5e3-4e87-bce3-a3a60c36d861-megalinter_file_names_cspell.txt 13.18ms
+CSpell: Files checked: 2, Issues found: 2 in 1 files
+
+[34mYou could have same capabilities but better runtime performances if you use a MegaLinter flavor:[0m
+- [documentation] oxsecurity/megalinter/flavors/documentation@v6.22.2 (48 linters) https://megalinter.io/6.22.2/flavors/documentation/
+- [ruby] oxsecurity/megalinter/flavors/ruby@v6.22.2 (48 linters) https://megalinter.io/6.22.2/flavors/ruby/
+- [rust] oxsecurity/megalinter/flavors/rust@v6.22.2 (48 linters) https://megalinter.io/6.22.2/flavors/rust/
+- [swift] oxsecurity/megalinter/flavors/swift@v6.22.2 (48 linters) https://megalinter.io/6.22.2/flavors/swift/
+- [go] oxsecurity/megalinter/flavors/go@v6.22.2 (50 linters) https://megalinter.io/6.22.2/flavors/go/
+- [java] oxsecurity/megalinter/flavors/java@v6.22.2 (51 linters) https://megalinter.io/6.22.2/flavors/java/
+- [php] oxsecurity/megalinter/flavors/php@v6.22.2 (51 linters) https://megalinter.io/6.22.2/flavors/php/
+- [salesforce] oxsecurity/megalinter/flavors/salesforce@v6.22.2 (51 linters) https://megalinter.io/6.22.2/flavors/salesforce/
+- [terraform] oxsecurity/megalinter/flavors/terraform@v6.22.2 (53 linters) https://megalinter.io/6.22.2/flavors/terraform/
+- [javascript] oxsecurity/megalinter/flavors/javascript@v6.22.2 (57 linters) https://megalinter.io/6.22.2/flavors/javascript/
+- [python] oxsecurity/megalinter/flavors/python@v6.22.2 (59 linters) https://megalinter.io/6.22.2/flavors/python/
+- [dotnet] oxsecurity/megalinter/flavors/dotnet@v6.22.2 (60 linters) https://megalinter.io/6.22.2/flavors/dotnet/
+- [cupcake] oxsecurity/megalinter/flavors/cupcake@v6.22.2 (82 linters) https://megalinter.io/6.22.2/flavors/cupcake/

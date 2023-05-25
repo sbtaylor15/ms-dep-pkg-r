@@ -1,0 +1,10 @@
+Results of actionlint linter (version 1.6.23)
+See documentation on https://megalinter.io/6.22.2/descriptors/action_actionlint/
+-----------------------------------------------
+
+❌ [ERROR] for workspace /tmp/lint
+Linter raw log:
+tmp/lint/.github/workflows/test.yaml:6:5: "push" section is sequence node but mapping node is expected [syntax-check]
+  |
+6 |     - main
+  |     ^

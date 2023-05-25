@@ -1,0 +1,22 @@
+Results of v8r linter (version 1.0.0)
+See documentation on https://megalinter.io/6.22.2/descriptors/yaml_v8r/
+-----------------------------------------------
+
+❌ [ERROR] for workspace /tmp/lint
+Linter raw log:
+ℹ No config file found
+ℹ Processing /tmp/lint/.github/workflows/test.yaml
+ℹ Found schema in https://www.schemastore.org/api/json/catalog.json ...
+ℹ Validating /tmp/lint/.github/workflows/test.yaml against schema from https://json.schemastore.org/github-workflow.json ...
+✖ /tmp/lint/.github/workflows/test.yaml is invalid
+
+/tmp/lint/.github/workflows/test.yaml#/on must be string
+/tmp/lint/.github/workflows/test.yaml#/on must be equal to one of the allowed values
+/tmp/lint/.github/workflows/test.yaml#/on must be array
+/tmp/lint/.github/workflows/test.yaml#/on/push must be object
+/tmp/lint/.github/workflows/test.yaml#/on/push must NOT be valid
+/tmp/lint/.github/workflows/test.yaml#/on/push must NOT be valid
+/tmp/lint/.github/workflows/test.yaml#/on/push must NOT be valid
+/tmp/lint/.github/workflows/test.yaml#/on/push must be null
+/tmp/lint/.github/workflows/test.yaml#/on/push must match exactly one schema in oneOf
+/tmp/lint/.github/workflows/test.yaml#/on must match exactly one schema in oneOf
