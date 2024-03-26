@@ -64,9 +64,3 @@ jobs:
           tags: ${{ steps.env.outputs.image_repo_tag }}
           platforms: linux/amd64
           attests: type=provenance,type=sbom
-
-      - name: slsa
-        uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.10.0
-        with:
-          image: ${{ steps.env.outputs.image_repository }}
-          digest: ${{ steps.build.outputs.digest }}
