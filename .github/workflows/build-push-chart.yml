@@ -3,19 +3,19 @@ name: Build/Push Image and Release Charts
   push:
 
 jobs:
-  setenv:
-    uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@a3e5ee9fed858b51eb6a3b5e78856b5a32c70163
-    with:
-      gh_head_ref: ${{ github.head_ref }}
-      gh_ref_name: ${{ github.ref_name }}
-      gh_event_repo_name: ${{ github.event.repository.name }}
-      gh_sha: ${{ github.sha }}
-      gh_repo: ${{ github.repository }}
-      gh_run_number: ${{ github.run_number }}
-
   release:
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
+      - name: setenv
+        uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@a3e5ee9fed858b51eb6a3b5e78856b5a32c70163
+        with:
+          gh_head_ref: ${{ github.head_ref }}
+          gh_ref_name: ${{ github.ref_name }}
+          gh_event_repo_name: ${{ github.event.repository.name }}
+          gh_sha: ${{ github.sha }}
+          gh_repo: ${{ github.repository }}
+          gh_run_number: ${{ github.run_number }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3
 
@@ -32,32 +32,24 @@ jobs:
           version: v0.13.0-rc1
 
       - name: Login to Quay
-        needs:
-          - setenv
         id: login
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
-          registry: ${{ needs.setenv.outputs.image_repository }}
+          registry: ${{ steps.setenv.outputs.image_repository }}
           username: ${{ secrets.QUAY_USERID }}
           password: ${{ secrets.QUAY_PASSWORD }}
 
       - name: Build and Push Docker Image
-        needs:
-          - setenv
         id: build
         uses: docker/build-push-action@af5a7ed5ba88268d5278f7203fb52cd833f66d6e # v5.2.0
         with:
           push: true
-          tags: ${{ needs.setenv.outputs.image_repo_tag }}
+          tags: ${{ steps.setenv.outputs.image_repo_tag }}
           platforms: linux/amd64
           attests: type=provenance,type=sbom
 
       - name: slsa
         uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.10.0
-        needs:
-          - setenv
         with:
-          image: ${{ needs.setenv.outputs.image_repository }}
+          image: ${{ steps.setenv.outputs.image_repository }}
           digest: ${{ steps.build.outputs.digest }}
-        secrets:
-          gh_token: ${{ secrets.HELM_INDEXER_TOKEN }}
