@@ -1,8 +1,10 @@
 name: Build/Push Image and Release Charts
 "on":
   push:
-permissions: write-all
+
 jobs:
+  runs-on: ubuntu-latest
+
   setenv:
     uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@a3e5ee9fed858b51eb6a3b5e78856b5a32c70163
     with:
@@ -13,7 +15,6 @@ jobs:
       gh_repo: ${{ github.repository }}
       gh_run_number: ${{ github.run_number }}
   release:
-    runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3
