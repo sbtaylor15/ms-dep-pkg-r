@@ -6,6 +6,10 @@ name: Build/Push Image and Release Charts
 jobs:
   release:
     runs-on: ubuntu-latest
+
+    outputs:
+      attestation:: ${{ steps.inspect-image.outputs.attestation }}
+
     steps:
       - name: Checkout
         id: checkout
@@ -64,10 +68,14 @@ jobs:
           cat prov.json
           echo "attestation=$(cat prov.json)" >> "$GITHUB_OUTPUT"
 
-
-      - name: Generate Intoto JSONL File
-        id: generate-intoto
-        uses: slsa-framework/slsa-github-generator@v1
-        with:
-          attestation: ${{ steps.inspect-image.outputs.attestation }}
-          output_file: in-toto.jsonl
+  provenance:
+    needs: [release]
+    permissions:
+      actions: read
+      id-token: write
+      # contents: read
+      packages: write
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.10.0
+    with:
+      attestation: ${{ needs.release.outputs.attestation }}
+      output_file: in-toto.jsonl
