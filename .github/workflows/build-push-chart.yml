@@ -48,19 +48,26 @@ jobs:
         with:
           version: v0.13.0-rc1
 
-      - name: Login to Quay
-        id: login
-        uses: docker/login-action@v3.0.0
-        with:
-          registry: ${{ steps.env.outputs.image_repository }}
-          username: ${{ secrets.QUAY_USERID }}
-          password: ${{ secrets.QUAY_PASSWORD }}
-
       - name: Build and Push Docker Image
         id: build
         uses: docker/build-push-action@v5.2.0
         with:
-          push: true
+          push: false
           tags: ${{ steps.env.outputs.image_repo_tag }}
           platforms: linux/amd64
           attests: type=provenance,type=sbom
+
+      - name: Inspect Docker Image
+        id: inspect-image
+        run: |
+          docker buildx inspect ${{ steps.env.outputs.image_repo_tag }} --format "{{json .Provenance.SLSA}}" > prov.json
+          cat prov.json
+          echo "attestation=$(cat prov.json)" >> "$GITHUB_OUTPUT"
+
+
+      - name: Generate Intoto JSONL File
+        id: generate-intoto
+        uses: slsa-framework/slsa-github-generator@v1
+        with:
+          attestation: ${{ steps.inspect-image.outputs.attestation }}
+          output_file: in-toto.jsonl
