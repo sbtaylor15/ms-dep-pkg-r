@@ -3,8 +3,6 @@ name: Build/Push Image and Release Charts
   push:
 
 jobs:
-  runs-on: ubuntu-latest
-
   setenv:
     uses: ortelius/workflow-toolkit/.github/workflows/env-config-workflow.yml@a3e5ee9fed858b51eb6a3b5e78856b5a32c70163
     with:
@@ -14,7 +12,9 @@ jobs:
       gh_sha: ${{ github.sha }}
       gh_repo: ${{ github.repository }}
       gh_run_number: ${{ github.run_number }}
+
   release:
+      runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3
@@ -51,11 +51,13 @@ jobs:
           tags: ${{ needs.setenv.outputs.image_repo_tag }}
           platforms: linux/amd64
           attests: type=provenance,type=sbom
-      uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.10.0
-      needs:
-        - setenv
-      with:
-        image: ${{ needs.setenv.outputs.image_repository }}
-        digest: ${{ steps.build.outputs.digest }}
-      secrets:
-        gh_token: ${{ secrets.HELM_INDEXER_TOKEN }}
+
+      - name: slsa
+        uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.10.0
+        needs:
+          - setenv
+        with:
+          image: ${{ needs.setenv.outputs.image_repository }}
+          digest: ${{ steps.build.outputs.digest }}
+        secrets:
+          gh_token: ${{ secrets.HELM_INDEXER_TOKEN }}
